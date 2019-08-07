@@ -1,11 +1,5 @@
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import os
 import keras
-
-import itertools
 
 import pandas as pd
 import numpy as np
@@ -44,15 +38,6 @@ test.drop('Id',axis = 1, inplace = True)
 
 print("")
 print("List of features contained our dataset:",list(train.columns))
-
-
-
-
-
-
-
-
-
 
 
 from sklearn.ensemble import IsolationForest
@@ -98,9 +83,6 @@ train = pd.DataFrame(prepro.transform(mat_train),columns = col_train)
 test  = pd.DataFrame(prepro_test.transform(mat_test),columns = col_train_bis)
 
 train.head()
-
-
-
 
 # List of features
 COLUMNS = col_train
@@ -211,21 +193,6 @@ predictions = list(itertools.islice(y, testing_set.shape[0]))
 predictions = prepro_y.inverse_transform(np.array(predictions).reshape(434,1))
 
 reality = pd.DataFrame(prepro.inverse_transform(testing_set), columns = [COLUMNS]).SalePrice
-
-
-
-# matplotlib.rc('xtick', labelsize=30)
-# matplotlib.rc('ytick', labelsize=30)
-#
-# fig, ax = plt.subplots(figsize=(50, 40))
-
-# plt.style.use('ggplot')
-# plt.plot(predictions, reality, 'ro')
-# plt.xlabel('Predictions', fontsize = 30)
-# plt.ylabel('Reality', fontsize = 30)
-# plt.title('Predictions x Reality on dataset Test', fontsize = 30)
-# ax.plot([reality.min(), reality.max()], [reality.min(), reality.max()], 'k--', lw=4)
-# plt.show()
 
 
 y_predict = model.predict(np.array(test))
